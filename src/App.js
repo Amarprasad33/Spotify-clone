@@ -24,7 +24,14 @@ function App() {
   return (
     // BEM
     <div className='app'>
-      <Login />
+      {
+        token ? (
+          <h1>i am logged in</h1>
+        ) : (
+          <Login />
+        )
+      }
+      
     </div>
   );
 }
