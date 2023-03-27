@@ -1,6 +1,6 @@
 import React from "react";
-import './Login.css';
-import { loginUrl } from "./spotify";
+import '../Login.css';
+import { loginUrl } from "../spotify";
 
 function Login() {
     return (
@@ -11,7 +11,6 @@ function Login() {
         </div>
     )
 }
-
 
 export default Login;
 
