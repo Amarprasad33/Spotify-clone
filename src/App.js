@@ -9,8 +9,8 @@ import { useStateValue } from './StateProvider';
 const spotify = new SpotifyWebApi();
 
 function App() {
-  const [token, setToken] = useState(null);
-  const [{ }, dispatch] = useStateValue();
+  // const [token, setToken] = useState(null);
+  const [{ user, token }, dispatch] = useStateValue();
 
   // Run code based on a given condition
   useEffect(() => {
@@ -19,17 +19,31 @@ function App() {
     const _token = hash.access_token;
 
     if (_token) {
-      setToken(_token);
+
+      dispatch({
+        type: 'SET_TOKEN',
+        token: _token,
+      })
+
+      // setToken(_token);
 
       spotify.setAccessToken(_token);
 
       spotify.getMe().then((user) => {
         console.log("👨‍🦰", user);
+
+        dispatch({
+          type: 'SET_USER',
+          user: user,
+        });
       });
     }
 
     console.log(' I HAVE A TOKEN -->', token);
-  }, [])
+  }, []);
+
+  console.log("👨‍🦰", user);
+  console.log("👽", token);
 
 
   return (
